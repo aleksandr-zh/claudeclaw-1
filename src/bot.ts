@@ -824,7 +824,7 @@ export function createBot(): Bot {
     if (AGENT_ID !== 'main') {
       return ctx.reply(`${AGENT_ID.charAt(0).toUpperCase() + AGENT_ID.slice(1)} agent online.`);
     }
-    return ctx.reply('ClaudeClaw online. What do you need?');
+    return ctx.reply('Онлайн. Чем помочь?');
   });
 
   // /newchat — clear Claude session, start fresh + auto-commit to hive mind
