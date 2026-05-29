@@ -31,6 +31,7 @@ function readCredentials(): Credentials | null {
 function getCheckIntervalMs(): number {
   const env = readEnvFile(['OAUTH_CHECK_MINUTES']);
   const minutes = parseInt(env.OAUTH_CHECK_MINUTES || '30', 10);
+  if (!isNaN(minutes) && minutes === 0) return 0; // 0 = disabled
   return (isNaN(minutes) || minutes < 1 ? 30 : minutes) * 60 * 1000;
 }
 
@@ -117,6 +118,11 @@ async function checkOAuthHealth(sender: Sender): Promise<void> {
 export function initOAuthHealthCheck(sender: Sender): void {
   const checkIntervalMs = getCheckIntervalMs();
   const alertThresholdMs = getAlertThresholdMs();
+
+  if (checkIntervalMs === 0) {
+    logger.info('OAuth health check disabled (OAUTH_CHECK_MINUTES=0)');
+    return;
+  }
 
   // Initial check after 10s (let bot fully start)
   setTimeout(() => void checkOAuthHealth(sender), 10_000);
