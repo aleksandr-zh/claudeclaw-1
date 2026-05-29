@@ -20,6 +20,8 @@ interface ExtractionResult {
 
 const EXTRACTION_PROMPT = `You are a memory extraction agent. Given a conversation exchange between a user and their AI assistant, decide if it contains information worth remembering LONG-TERM (weeks/months from now).
 
+IMPORTANT: Write the "summary" field in Russian language only.
+
 The bar is HIGH. Most exchanges should be skipped. Only extract if a future conversation would go noticeably worse without this memory.
 
 SKIP (return {"skip": true}) if:
