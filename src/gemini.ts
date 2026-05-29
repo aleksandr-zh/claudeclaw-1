@@ -20,7 +20,7 @@ function getClient(): GoogleGenAI {
  */
 export async function generateContent(
   prompt: string,
-  model = 'gemini-3-flash-preview',
+  model = 'gemini-2.5-flash-preview-05-20',
 ): Promise<string> {
   const ai = getClient();
   const response = await ai.models.generateContent({
