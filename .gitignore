@@ -40,3 +40,5 @@ scripts/waste-reminder.sh
 CLAUDE.md
 agents/*/agent.yaml
 agents/*/CLAUDE.md
+*.png
+.playwright-cli/
